@@ -1,27 +1,44 @@
 import React from "react";
 import AidlyLogo from "../src/assets/Aidly_logo.png.jpg";
 
+
 const Navbar = () => {
   return (
-    <nav className="w-full bg-[#1A5F48] py-4 px-5 flex items-center justify-between  fixed top-0 left-0 z-50 border-b-4 border-white ">
-      {/* Logo + Title */}
-      <div className="flex items-center gap-3">
-        <img 
-          src={AidlyLogo}
-          alt="Aidly Logo"
-          className="w-30 h-30"
-        />
-        <h1 className="text-6xl font-semibold text-white mt-15">Aidly Corporate</h1>
-      </div>
+    <nav
+      className="w-full text-white border-b border-white/100"
+      style={{
+        background: "linear-gradient(180deg, #1A5F48 0%, #18765A 100%)",
+      }}
+    >
+    <div className="max-w-7xl mx-auto flex items-center justify-between px-10 py-5">
 
-      {/* Menu */}
-      <div className="flex items-center gap-12 text-white text-3xl mt-20">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
+        {/* Left - Logo + Title */}
+        <div className="flex items-center gap-4">
+          <img
+            src={AidlyLogo}
+            alt="logo"
+             className="w-[70px] h-[70px] object-contain"
+            style={{ opacity: 1 }}
+          />
+
+          <h1
+            className="text-5xl font-semibold"
+            style={{
+              fontFamily: "Inria Serif, serif",
+            }}
+          >
+            Aidly Corporate
+          </h1>
+        </div>
+
+        {/* Right - Menu */}
+        <ul className="flex gap-10 text-lg font-medium">
+          <li className="hover:text-gray-200 cursor-pointer transition">Home</li>
+          <li className="hover:text-gray-200 cursor-pointer transition">About</li>
+          <li className="hover:text-gray-200 cursor-pointer transition">Services</li>
+          <li className="hover:text-gray-200 cursor-pointer transition">Contact</li>
+        </ul>
       </div>
-      
     </nav>
   );
 };

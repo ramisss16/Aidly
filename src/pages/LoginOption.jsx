@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const LoginOptions = () => {
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-[#1A5F48] via-[#89C9CA] to-[#C6EBE8]  pt-35 ">
+    <div className="w-full min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-[#1A5F48] via-[#89C9CA] to-[#C6EBE8]  pt-15 ">
 
       {/* Main Card */}
       

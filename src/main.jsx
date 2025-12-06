@@ -6,7 +6,10 @@ import "./index.css";
 import App from "./App";
 import LoginOptions from "./pages/LoginOption";
 import LoginPage from "../src/pages/loginpage";   
-import SignUp from "./pages/SignUPage";
+import SignUp from "./pages/SignupHospital";
+import BankDetails from "./pages/BankDetails";
+import EmergencyDetails from "./pages/EmergencyDetails";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 
 
@@ -27,9 +30,20 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
-        path: "/SignUp",
+        path: "/sign-up-hospital",
         element: <SignUp />,
       },
+      {
+        path: "/bank-details",
+        element: <BankDetails />,
+      },
+      {
+        path: "/emergency-details",
+        element: <EmergencyDetails />,
+      }, {
+        path: "/terms-and-conditions",
+        element: <TermsAndConditions />,
+      }
     ],
   },
 ]);
