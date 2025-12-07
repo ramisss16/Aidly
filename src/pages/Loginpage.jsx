@@ -1,49 +1,51 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LoginPage = () => {
+const Login = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1A5F48] via-[#89C9CA] to-[#C6EBE8] flex justify-center pt-36  ">
-      <div className="w-[500px] h-[500px] bg-white/70 p-10 rounded-lg shadow-xl backdrop-blur mt-10 ">
-
-        <h2 className="text-3xl font-semibold mb-2">Login</h2>
-        <p className="text-gray-700 mb-8">
+    <div
+      className="min-h-[calc(100vh-64px)] flex justify-center items-start pt-16"
+      style={{
+        background: "linear-gradient(0deg, #C6EBE8 0%, #89C9CA 60.58%, #1A5F48 100%)",
+      }}
+    >
+      <div className="bg-white w-[90%] max-w-[520px] rounded-lg shadow-lg px-10 py-8">
+        {/* Heading */}
+        <h1 className="text-3xl font-semibold mb-1">Login</h1>
+        <p className="text-sm text-gray-600 mb-6">
           Enter your credentials to login to your account
         </p>
 
-        {/* Username */}
-        <label className="block font-medium mb-1">UserName</label>
+        {/* Email */}
+        <label className="block text-sm font-semibold mb-1">Email</label>
         <input
-          type="text"
-          className="w-full bg-gray-200 px-4 py-2 mb-4 rounded outline-none border border-gray-400"
+          type="email"
+          className="w-full mb-4 px-4 py-2 rounded-md bg-[#E9E9E9] text-gray-800 outline-none focus:ring-2 focus:ring-blue-400"
         />
 
         {/* Password */}
-        <label className="block font-medium mb-1">Password</label>
-        <div className="flex items-center bg-gray-200 px-4 py-2 mb-2 rounded border border-gray-400">
+        <label className="block text-sm font-semibold mb-1">Password</label>
+        <div className="relative mb-3">
           <input
             type="password"
-            className="w-full bg-transparent outline-none"
+            className="w-full px-4 py-2 rounded-md bg-[#E9E9E9] text-gray-800 outline-none focus:ring-2 focus:ring-blue-400"
           />
-          <span className="text-gray-500">🔒</span>
         </div>
 
-        {/* Forgot Password */}
-        <div className="text-right mb-6">
-          <a href="#" className="text-blue-600 hover:underline">
+        <div className="flex justify-end mb-5">
+          <button className="text-sm text-blue-600 hover:underline">
             Forgot Password?
-          </a>
+          </button>
         </div>
 
-        {/* Sign In Button */}
-        <button className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 font-semibold">
+        {/* Sign In button */}
+        <button className="w-full bg-[#1967FF] hover:bg-[#1557d6] text-white py-3 rounded-md font-semibold text-lg mb-4 transition">
           Sign In
         </button>
 
-        {/* Sign up */}
-        <p className="mt-5 text-left text-gray-700">
+        <p className="text-sm text-gray-700 text-center">
           Don’t have an account?{" "}
-          <Link to="/SignUp" className="text-blue-600 hover:underline">
+          <Link to="/sign-up-hospital" className="text-blue-600 hover:underline">
             Sign Up
           </Link>
         </p>
@@ -52,4 +54,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
