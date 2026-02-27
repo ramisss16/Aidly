@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 const TermsAndConditions = () => {
   const navigate = useNavigate();
 
-  const handleAccept = () => {
-    // Next page yahan navigate karega
-    //navigate("/dashboard"); 
+  const handleAccept = (e) => {
+    e.preventDefault();
+    navigate("/thank-you"); 
   };
 
   return (
