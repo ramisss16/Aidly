@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 const AmbulancePage = () => {
 
-  const [status, setStatus] = useState(Array(10).fill(false));
+  const [ambulances, setAmbulances] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const tableHeadings = [
     "Ambulance Number",
@@ -15,6 +16,50 @@ const AmbulancePage = () => {
     "Status",
     "Track",
   ];
+
+  // 🔥 Fetch Data
+  useEffect(() => {
+    fetch("http://localhost:3000/ambulance/all")
+      .then(res => res.json())
+      .then(data => {
+        const list = data.ambulances || data;
+        setAmbulances(list);
+      })
+      .catch(err => console.error(err));
+  }, []);
+
+  // 🔎 Filtered list based on searchQuery (case-insensitive)
+  const filteredAmbulances = useMemo(() => {
+    const q = (searchQuery || "").trim().toLowerCase();
+    if (!q) return ambulances;
+
+    return ambulances.filter((amb) => {
+      const fields = [
+        amb.rcNumber,
+        amb.type,
+        amb.crew?.operatorName,
+        amb.crew?.coOperatorName,
+        amb.crew?.operatorMobile,
+        amb.crew?.coOperatorMobile,
+        amb.availability
+      ];
+
+      return fields.some((f) =>
+        String(f || "").toLowerCase().includes(q)
+      );
+    });
+  }, [ambulances, searchQuery]);
+
+  // 🔥 Toggle Status (updates local ambulance state)
+  const handleToggle = (id) => {
+    setAmbulances(prev =>
+      prev.map(a =>
+        a._id === id
+          ? { ...a, availability: a.availability === "Available" ? "NotAvailable" : "Available" }
+          : a
+      )
+    );
+  };
 
   return (
     <div className="bg-white p-4 rounded shadow">
@@ -44,7 +89,13 @@ const AmbulancePage = () => {
         </div>
 
         <div>
-          Search: <input className="border px-3 py-1" />
+          Search:{" "}
+          <input
+            className="border px-3 py-1"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by RC, type, name, mobile, status..."
+          />
         </div>
       </div>
 
@@ -61,42 +112,46 @@ const AmbulancePage = () => {
         </thead>
 
         <tbody>
-          {Array.from({ length: 10 }).map((_, i) => (
-            <tr key={i} className="text-center hover:bg-gray-50">
-              <td className="border px-3 py-3">MP04 AB 1234</td>
-              <td className="border">ICU</td>
-              <td className="border">Operator</td>
-              <td className="border">Co-Operator</td>
-              <td className="border">9999999999</td>
-              <td className="border">8888888888</td>
+          {filteredAmbulances.map((amb) => {
+            const isAvailable = amb.availability === "Available";
+            return (
+              <tr key={amb._id} className="text-center hover:bg-gray-50">
+                <td className="border px-3 py-3">{amb.rcNumber}</td>
+                <td className="border">{amb.type}</td>
+                <td className="border">{amb.crew?.operatorName || "—"}</td>
+                <td className="border">{amb.crew?.coOperatorName || "—"}</td>
+                <td className="border">{amb.crew?.operatorMobile || "—"}</td>
+                <td className="border">{amb.crew?.coOperatorMobile || "—"}</td>
 
-              <td className="border">
-                <div className="flex items-center justify-center">
-                  <button
-                    onClick={() => {
-                      const newStatus = [...status];
-                      newStatus[i] = !newStatus[i];
-                      setStatus(newStatus);
-                    }}
-                    className={`w-12 h-6 flex items-center rounded-full px-1 transition-all duration-300
-                    ${
-                      status[i]
-                        ? "bg-green-500 justify-end"
-                        : "bg-gray-300 justify-start"
-                    }`}
-                  >
-                    <span className="w-4 h-4 bg-white rounded-full shadow"></span>
+                <td className="border">
+                  <div className="flex items-center justify-center">
+                    <button
+                      onClick={() => handleToggle(amb._id)}
+                      className={`w-12 h-6 flex items-center rounded-full px-1 transition-all duration-300
+                      ${isAvailable ? "bg-green-500 justify-end" : "bg-gray-300 justify-start"}`}
+                    >
+                      <span className="w-4 h-4 bg-white rounded-full shadow"></span>
+                    </button>
+                  </div>
+                </td>
+
+                <td className="border">
+                  <button className="bg-green-500 px-4 py-1 text-white rounded-md">
+                    track
                   </button>
-                </div>
-              </td>
+                </td>
+              </tr>
+            );
+          })}
 
-              <td className="border">
-                <button className="bg-green-500 px-4 py-1 text-white rounded-md">
-                  track
-                </button>
+          {/* If no results */}
+          {filteredAmbulances.length === 0 && (
+            <tr>
+              <td colSpan={tableHeadings.length} className="border p-6 text-center text-gray-500">
+                No ambulances match your search.
               </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
 
