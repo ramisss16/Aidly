@@ -5,6 +5,7 @@ const AmbulancePage = () => {
 
   const [ambulances, setAmbulances] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [entries, setEntries] = useState(0); // ADDED
 
   const tableHeadings = [
     "Ambulance Number",
@@ -17,18 +18,19 @@ const AmbulancePage = () => {
     "Track",
   ];
 
-  // 🔥 Fetch Data
+  // Fetch Data
   useEffect(() => {
     fetch("http://localhost:3000/ambulance/all")
       .then(res => res.json())
       .then(data => {
         const list = data.ambulances || data;
         setAmbulances(list);
+        setEntries(list.length); // default show all rows
       })
       .catch(err => console.error(err));
   }, []);
 
-  // 🔎 Filtered list based on searchQuery (case-insensitive)
+  //  Filtered list based on searchQuery 
   const filteredAmbulances = useMemo(() => {
     const q = (searchQuery || "").trim().toLowerCase();
     if (!q) return ambulances;
@@ -50,7 +52,7 @@ const AmbulancePage = () => {
     });
   }, [ambulances, searchQuery]);
 
-  // 🔥 Toggle Status (updates local ambulance state)
+  // Toggle Status (updates local ambulance state)
   const handleToggle = (id) => {
     setAmbulances(prev =>
       prev.map(a =>
@@ -80,9 +82,15 @@ const AmbulancePage = () => {
       <div className="flex justify-between text-sm mb-4">
         <div>
           Show{" "}
-          <select className="border px-2 py-1 mx-1">
-            {[...Array(10)].map((_, i) => (
-              <option key={i}>{i + 1}</option>
+          <select
+            className="border px-2 py-1 mx-1"
+            value={entries} 
+            onChange={(e) => setEntries(Number(e.target.value))}
+          >
+            {[...Array(ambulances.length)].map((_, i) => (   
+              <option key={i + 1} value={i + 1}>
+                {i + 1}
+              </option>
             ))}
           </select>{" "}
           entries
@@ -112,7 +120,7 @@ const AmbulancePage = () => {
         </thead>
 
         <tbody>
-          {filteredAmbulances.map((amb) => {
+          {filteredAmbulances.slice(0, entries).map((amb) => {  
             const isAvailable = amb.availability === "Available";
             return (
               <tr key={amb._id} className="text-center hover:bg-gray-50">
