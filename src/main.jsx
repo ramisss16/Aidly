@@ -116,6 +116,9 @@ import AttendenceReacordPage from "./clinik/AttendenceRecord";
 import Doctordas from "./clinik/doctordas";
 import Servicemanager from "./clinik/ServiceManager";
 import Receptionist from "./clinik/Receptoinist";
+import MyPatients from "./clinik/Mypatient";
+import Myapointment from "./clinik/Myapointment";
+import LoginOptions from "./pages/LoginOption";
 
 const ErrorPage = () => <h1 className="text-center mt-20 text-3xl">Page Not Found</h1>;
 
@@ -129,7 +132,7 @@ const router = createBrowserRouter([
 
       {
         path: "/",
-        element: <AttendenceReacordPage />,
+        element: <LoginOptions/>,
         errorElement: <ErrorPage />,
 
        

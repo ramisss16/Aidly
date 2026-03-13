@@ -11,7 +11,7 @@ import profile from "../assets/apolohos.png"
 
 const HigherManager = () => {
 
-  const[open, setopen] = useState("StaffAttendence");
+  const[open, setopen] = useState("");
 
   const toggle = (name) => {
     if(open === name){

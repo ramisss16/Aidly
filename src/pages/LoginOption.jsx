@@ -1,45 +1,128 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const LoginOptions = () => {
+
+  const [open, setopen] = useState("StaffAttendence");
+
+  const toggle = (name) => {
+    if (open === name) {
+      setopen("")
+    } else {
+      setopen(name)
+    }
+  }
+
+
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-[#1A5F48] via-[#89C9CA] to-[#C6EBE8]  pt-10 ">
 
       {/* Main Card */}
-      
+
       <div className="mt-10 bg-white/80 backdrop-blur-md p-10  shadow-lg w-[600px] h-[450px]">
 
-        <h2 className="text-center text-3xl font-semibold mb-8">
-          Login with Aidly
+        <h2 className="-ml-5 text-3xl font-semibold mb-8">
+          Select Login Type
         </h2>
 
-        {/* ACTIVE BUTTON */}
-        <Link to="/login">
-        <button className="w-full bg-gray-300  text-gray-600 text-lg py-2  mb-3  border border-transparent hover:border-gray-500 ">
-         Hospital
-        </button>
-        </Link>
+        <div className="w-full bg-white  border border-transparent rounded-2xl mb-2 p-3">
+          {/* ACTIVE BUTTON */}
 
-        {/* ACTIVE BUTTON */}
-         <Link to="/login">
-        <button className="w-full bg-gray-300  text-gray-600 text-lg  py-2 mb-3 border border-transparent hover:border-gray-500">
-        Ambulance Owner
-        </button>
-        </Link> 
+          <button
+            onClick={() => toggle("Clinic/Hospital")}
+            className=" w-full text-lg   ">
+            Clinic/Hospital
+          </button>
 
-        {/* DISABLED BUTTON */}
-        <Link to="/login"> 
-        <button className="w-full bg-gray-300 text-gray-600 text-lg py-2 mb-3 border border-transparent hover:border-gray-500" >
-          Medical Store
-        </button>
-        </Link> 
 
-        {/* DISABLED BUTTON */}
-         <Link to="/login">
-        <button className="w-full bg-gray-300 text-gray-600 text-lg py-2 border border-transparent hover:border-gray-500" >
-         Doctor
-        </button>
-        </Link>
+          {open === "Clinic/Hospital" && (
+
+            <div className=" flex flex-col items-center gap-2 mt-2">
+              
+              <Link>
+            <button className="bg-green-300 w-50 py-1 rounded-full">
+                Clinik/Hospital Admin
+              </button>
+              </Link>
+
+              <Link>
+            <button className="bg-green-300  w-50 py-1 rounded-full">
+                Service manager
+              </button>
+              </Link>
+
+              <Link>
+            <button className="bg-green-300  w-50 py-1 rounded-full">
+               Doctor
+              </button>
+              </Link>
+
+              <Link>
+            <button className="bg-green-300 w-50 py-1 rounded-full">
+                Receptionist
+              </button>
+              </Link>
+
+            </div>
+
+          )}
+
+        </div>
+
+
+        {/* ambulnace */}
+      
+        <div className="w-full bg-white  border border-transparent rounded-2xl mb-2 p-3">
+          {/* ACTIVE BUTTON */}
+
+          <button
+            onClick={() => toggle("Ambulance")}
+            className=" w-full text-lg   ">
+            Ambulance
+          </button>
+
+
+          {open === "Ambulance" && (
+
+            <div className=" flex flex-col items-center gap-2 mt-2">
+              
+              <Link>
+            <button className="bg-green-300 w-50 py-1 rounded-full">
+                Hospital Ambulance
+              </button>
+              </Link>
+
+              <Link>
+            <button className="bg-green-300  w-50 py-1 rounded-full">
+                private Ambulance
+              </button>
+              </Link>
+
+
+           
+
+            </div>
+
+          )}
+
+        </div>
+
+
+        {/* medical */}
+        
+        <div className="w-full bg-white  border border-transparent rounded-2xl mb-2 p-3">
+          {/* ACTIVE BUTTON */}
+
+          <button
+            // onClick={() => toggle("Ambulance")}
+            className=" w-full text-lg   ">
+            Ambulance
+          </button>
+
+
+       
+        </div>
+
 
       </div>
     </div>
