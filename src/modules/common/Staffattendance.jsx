@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const staffData = [
   { id: 101, name: "Dr. Sarah Mitchell", time: "8:00 AM" },
@@ -52,9 +53,11 @@ export default function AttendancePage() {
     className="border rounded px-3 py-1"
   />
 
+<Link to="/dashboard/receptionist/staffsuccessful">
   <button onClick={saveAttendance} className="bg-green-500 text-white px-4 py-1 rounded-full">
     Save
   </button>
+</Link>
 
 </div>
   

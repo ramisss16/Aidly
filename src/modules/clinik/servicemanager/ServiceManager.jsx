@@ -1,15 +1,20 @@
 import React, { useState } from "react";
-import chart from "../assets/chart.png.jpg"
+import { useParams, Link } from "react-router-dom";
+import chart from "../../../assets/chart.png.jpg"
 
-import diagnosis from "../assets/diagonosis.png.jpg"
-import doctor from "../assets/doctormanagement.png.jpg"
-import expenses from "../assets/expenses.png.jpg"
-import patient from "../assets/patienapointment.png.jpg"
-import satisfaction from "../assets/patient_satisfaction.jpg"
-import treatment from "../assets/treatment.png.jpg"
-import profile from "../assets/apolohos.png"
+import diagnosis from "../../../assets/diagonosis.png.jpg"
+import doctor from "../../../assets/doctormanagement.png.jpg"
+import expenses from "../../../assets/expenses.png.jpg"
+import patient from "../../../assets/patienapointment.png.jpg"
+import satisfaction from "../../../assets/patient_satisfaction.jpg"
+import treatment from "../../../assets/treatment.png.jpg"
+import profile from "../../../assets/apolohos.png"
+import { use } from "react";
 
-const Receptionist = () => {
+
+const Servicemanager = () => {
+
+const {role} = useParams();
 
   const[open, setopen] = useState("StaffAttendence");
 
@@ -42,13 +47,17 @@ Staff Attendance
 
 <div className="flex gap-2 mt-2">
 
+<Link to={'/dashboard/${role}/staffattendence'}>
 <button className="bg-blue-300 px-3 py-1 rounded-full">
 Update
 </button>
+</Link>
 
+<Link to={'/dashboard/${role}/viewAttendence'}>
 <button className="bg-green-300 px-3 py-1 rounded-full">
 View
 </button>
+</Link>
 
 </div>
 
@@ -58,15 +67,15 @@ View
 
 
 
-{/* Bed Availibility */}
+{/* Bed Management */}
 <div
-onClick={() => toggle("BedAvailibility")}
+onClick={() => toggle("BedManagement")}
 className="font-semibold text-lg bg-white p-3 px-8 mb-2"
 >
 
-Bed Availibility
+Bed Management
 
-{open === "BedAvailibility" && (
+{open === "BedManagement" && (
 
 <div className="flex gap-2 mt-2">
 
@@ -85,15 +94,16 @@ View
 </div>
 
 
-{/* Staff Schedule */}
+
+{/* Staff Scheduling */}
 <div
-onClick={() => toggle("StaffSchedule")}
+onClick={() => toggle("StaffScheduling")}
 className="font-semibold text-lg bg-white p-3 px-8  mb-2"
 >
 
- Staff Schedule
+Staff Scheduling
 
-{open === "StaffSchedule" && (
+{open === "StaffScheduling" && (
 
 <div className="flex gap-2 mt-2">
 
@@ -110,9 +120,6 @@ View
 )}
 
 </div>
-
-
-
 
 
 {/* Billing Records */}
@@ -284,7 +291,7 @@ className="w-80 h-90"
 
 {/* Management Cards */}
 
-<div className="grid grid-cols-5 gap-4">
+<div className="grid grid-cols-4 gap-4">
 
 {/* Patient */}
 
@@ -301,13 +308,17 @@ Patient Management
 
 <div className="flex justify-center gap-2 mt-2">
 
+<Link to={'/dashboard/${role}/addpatient'}>
 <button className="bg-blue-300 px-3 rounded-full">
 Update
 </button>
+</Link>
 
+<Link to={'/dashboard/${role}/viewpatient'}>
 <button className="bg-green-300 px-3 rounded-full">
 View
 </button>
+</Link>
 
 </div>
 
@@ -394,32 +405,6 @@ View
 
 </div>
 
-{/* Expense */}
-
-<div className="bg-white p-4 rounded-xl shadow text-center">
-
-<img
-src={expenses}
-className="w-24 mx-auto"
-/>
-
-<h3 className="font-semibold">
-Expense Management
-</h3>
-
-<div className="flex justify-center gap-2 mt-2">
-
-<button className="bg-blue-300 px-3 rounded-full">
-Update
-</button>
-
-<button className="bg-green-300 px-3 rounded-full">
-View
-</button>
-
-</div>
-
-</div>
 
 </div>
 
@@ -430,4 +415,4 @@ View
 )
 }
 
- export default Receptionist;
+ export default Servicemanager;

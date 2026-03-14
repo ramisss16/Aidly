@@ -92,7 +92,7 @@ export default function Myapointment() {
 
 <div className="flex gap-2">
 {/* dates */}
-<div className="flex items-center border rounded-lg px-3 py-2 w-full md:w-96 mb-4">
+<div className="flex items-center border rounded-lg px-3 py-2  mb-4">
   
   <input
     type="date"
@@ -104,11 +104,11 @@ export default function Myapointment() {
 </div>
 
 {/* Search */}
-<div className="flex items-center border rounded-lg px-3 py-2 w-full md:w-96 mb-4">
+<div className="flex items-center border rounded-lg px-6 py-1   mb-4">
   <Search size={18} className="text-gray-400" />
   <input
     type="text"
-    placeholder="All Status"
+    placeholder="Search"
     className="outline-none ml-2 w-full"
     value={search}
     onChange={(e)=>setsearch(e.target.value)}

@@ -110,15 +110,23 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
 
 import App from "./App";
-import Highermanager from "./clinik/HigherManagerdashboard";
-import AttendancePage from "./clinik/Staffattendance";
-import AttendenceReacordPage from "./clinik/AttendenceRecord";
-import Doctordas from "./clinik/doctordas";
-import Servicemanager from "./clinik/ServiceManager";
-import Receptionist from "./clinik/Receptoinist";
-import MyPatients from "./clinik/Mypatient";
-import Myapointment from "./clinik/Myapointment";
 import LoginOptions from "./pages/LoginOption";
+import Login from "./pages/Loginpage";
+import HigherManager from "./modules/clinik/highermanager/HigherManagerdashboard";
+import Doctordas from "./modules/clinik/doctor/DoctorDashboard";
+import Receptionist from "./modules/clinik/receptionist/ReceptoinistDashboard";
+import Servicemanager from "./modules/clinik/servicemanager/ServiceManager";
+import AddPatientRecord from "./modules/common/AddPatient";
+import ViewPatients from "./modules/common/PatientRecords";
+import Patientsuccess from "./modules/common/Recordsuccess";
+import AttendancePage from "./modules/common/Staffattendance";
+import StaffsuccessMessage from "./modules/common/staffSuccess";
+import AttendenceReacordPage from "./modules/common/AttendenceRecord";
+import DashboardLayout from "./DashBoardLayout";
+import RoleDashboard from "./Role";
+import MyPatients from "./modules/clinik/doctor/Mypatient";
+import Myapointment from "./modules/clinik/doctor/Today'sapointment";
+
 
 const ErrorPage = () => <h1 className="text-center mt-20 text-3xl">Page Not Found</h1>;
 
@@ -132,33 +140,80 @@ const router = createBrowserRouter([
 
       {
         path: "/",
-        element: <LoginOptions/>,
+        element: <LoginOptions />,
         errorElement: <ErrorPage />,
-
-       
-
       },
 
-     
-          // {
-          //   path: "staffattendence",
-          //   element: <AttendancePage />,
-          //   errorElement: <ErrorPage />,
-          // },
-        
-          // {
-          //   path: "AttendenceRecord",
-          //   element: <AttendenceReacordPage/>,
-          //   errorElement: <ErrorPage/>
-          // }
-
+      {
+        path: "/login/:role",
+        element: <Login />
+      },
 
 
     ],
-
-
-
   },
+
+  // dashboardnav
+
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+
+    children: [
+
+      {
+        path: ":role",
+        element: <RoleDashboard/>,
+
+
+      },
+
+    
+    ]
+  },
+
+ 
+    {
+        path: "/dashboard/:role/addpatient",
+        element: <AddPatientRecord />
+      },
+
+      {
+        path: "/dashboard/:role/viewpatient",
+        element: <ViewPatients />
+      },
+      {
+        path: "/dashboard/:role/successful",
+        element: <Patientsuccess />
+      },
+
+      {
+        path: "/dashboard/:role/staffattendence",
+        element: <AttendancePage />
+      },
+
+      {
+        path: "/dashboard/:role/staffsuccessful",
+        element: <StaffsuccessMessage />
+      },
+
+      {
+        path: "/dashboard/:role/viewAttendence",
+        element: <AttendenceReacordPage />
+      },
+
+      // for doctor
+
+      {
+        path: "/dashboard/doctor/mypatient",
+        element: <MyPatients/>
+      },
+
+      {
+        path: "/dashboard/doctor/today'sappointmment",
+        element: <Myapointment/>
+      },
+
 ]);
 
 

@@ -1,25 +1,18 @@
-import React, { useState } from "react";
-import chart from "../assets/chart.png.jpg"
+import React  from "react";
+import { Link } from "react-router-dom";
+import chart from "../../../assets/chart.png.jpg"
 
 
-import Myapointment from "../assets/Myapointment.png"
+import Myapointment from "../../../assets/Myapointment.png"
 
-import Mypatient from "../assets/Mypatient.png"
-import satisfaction from "../assets/patient_satisfaction.jpg"
+import Mypatient from "../../../assets/Mypatient.png"
+import satisfaction from "../../../assets/patient_satisfaction.jpg"
 
-import profile from "../assets/apolohos.png"
+import profile from "../../../assets/apolohos.png"
 
 const Doctordas = () => {
 
-  const[open, setopen] = useState("TodaysSchedule");
-
-  const toggle = (name) => {
-    if(open === name){
-      setopen("")
-    }else{
-      setopen(name)
-    }
-  }
+  
 
   return (
 
@@ -31,87 +24,35 @@ const Doctordas = () => {
 <div className="w-64  bg-gradient-to-b from-[#1A5F48] via-[#89C9CA] to-[#C6EBE8] shadow p-1">
 
 {/* Today's Schedule */}
-<div
-onClick={() => toggle("TodaysSchedule")}
+<Link to="/dashboard/doctor/today'sappointmment">
+<div 
 className="font-semibold text-lg bg-white p-3 px-8  mb-2"
 >
-
 Today's Schedule
-
-{open === "TodaysSchedule" && (
-
-<div className="flex gap-2 mt-2">
-
-<button className="bg-blue-300 px-3 py-1 rounded-full">
-Update
-</button>
-
-<button className="bg-green-300 px-3 py-1 rounded-full">
-View
-</button>
-
 </div>
-
-)}
-
-</div>
-
+</Link>
 
 
 {/* My Patient */}
+<Link to="/dashboard/doctor/mypatient">
 <div
-onClick={() => toggle("MyPatient")}
 className="font-semibold text-lg bg-white p-3 px-8 mb-2"
 >
-
 My Patient
 
-{open === "MyPatient" && (
-
-<div className="flex gap-2 mt-2">
-
-<button className="bg-blue-300 px-3 py-1 rounded-full">
-Update
-</button>
-
-<button className="bg-green-300 px-3 py-1 rounded-full">
-View
-</button>
-
 </div>
-
-)}
-
-</div>
-
+</Link>
 
 
 {/* Apointments */}
+<Link to="/dashboard/doctor/today'sappointmment">
 <div
-onClick={() => toggle("Apointments")}
 className="font-semibold text-lg bg-white p-3 px-8  mb-2"
 >
-
 Apointments
 
-{open === "Apointments" && (
-
-<div className="flex gap-2 mt-2">
-
-<button className="bg-blue-300 px-3 py-1 rounded-full">
-Update
-</button>
-
-<button className="bg-green-300 px-3 py-1 rounded-full">
-View
-</button>
-
 </div>
-
-)}
-
-</div>
-
+</Link>
 
 {/* Lab Results */}
 <div
@@ -299,9 +240,11 @@ className="w-34 mx-auto"
 
 <div className=" justify-center  mt-2">
 
+<Link to="/dashboard/doctor/mypatient">
 <button className="bg-green-300 py-2 px-4 rounded-full">
 View List
 </button>
+</Link>
 
 
 
@@ -325,10 +268,11 @@ My Apointment
 <div className="flex justify-center  mt-2">
 
 
-
+<Link to="/dashboard/doctor/today'sappointmment">
 <button className="bg-green-300 py-2 px-4 rounded-full">
 View List
 </button>
+</Link>
 
 </div>
 
@@ -344,10 +288,11 @@ Quick Actions
 
 <div className="flex justify-center col-2 gap-3 mb-6  mt-2">
 
-
+<Link to={'/dashboard/${role}/addpatient'}>
 <button className="bg-white py-3 px-4 rounded-full">
 Add Patient
 </button>
+</Link>
 
 <button className="bg-white py-3 px-4 rounded-full">
 Write priscription

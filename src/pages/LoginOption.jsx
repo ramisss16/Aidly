@@ -39,25 +39,25 @@ const LoginOptions = () => {
 
             <div className=" flex flex-col items-center gap-2 mt-2">
               
-              <Link>
+              <Link to="/login/highermanager">
             <button className="bg-green-300 w-50 py-1 rounded-full">
                 Clinik/Hospital Admin
               </button>
               </Link>
 
-              <Link>
+              <Link to="/login/servicemanager">
             <button className="bg-green-300  w-50 py-1 rounded-full">
                 Service manager
               </button>
               </Link>
 
-              <Link>
+              <Link to="/login/doctor">
             <button className="bg-green-300  w-50 py-1 rounded-full">
                Doctor
               </button>
               </Link>
 
-              <Link>
+              <Link to="/login/receptionist">
             <button className="bg-green-300 w-50 py-1 rounded-full">
                 Receptionist
               </button>
@@ -86,13 +86,13 @@ const LoginOptions = () => {
 
             <div className=" flex flex-col items-center gap-2 mt-2">
               
-              <Link>
+              <Link to="#">
             <button className="bg-green-300 w-50 py-1 rounded-full">
                 Hospital Ambulance
               </button>
               </Link>
 
-              <Link>
+              <Link to="#">
             <button className="bg-green-300  w-50 py-1 rounded-full">
                 private Ambulance
               </button>
@@ -116,7 +116,7 @@ const LoginOptions = () => {
           <button
             // onClick={() => toggle("Ambulance")}
             className=" w-full text-lg   ">
-            Ambulance
+            Medical Store
           </button>
 
 

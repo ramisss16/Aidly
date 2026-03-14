@@ -7,18 +7,18 @@ const ViewPatients = () => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
-//   useEffect(() => {
-//     fetchPatients();
-//   }, []);
+  useEffect(() => {
+    fetchPatients();
+  }, []);
 
-//   const fetchPatients = async () => {
-//     try {
-//       const res = await axios.get("http://localhost:3000/api/patients");
-//       setPatients(res.data);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
+  const fetchPatients = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/api/patients");
+      setPatients(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const filteredPatients = patients.filter((patient) =>
     patient.firstName.toLowerCase().includes(search.toLowerCase()) ||

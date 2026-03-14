@@ -1,17 +1,21 @@
 import React, { useState } from "react";
-import chart from "../assets/chart.png.jpg"
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import chart from "../../../assets/chart.png.jpg"
 
-import diagnosis from "../assets/diagonosis.png.jpg"
-import doctor from "../assets/doctormanagement.png.jpg"
-import expenses from "../assets/expenses.png.jpg"
-import patient from "../assets/patienapointment.png.jpg"
-import satisfaction from "../assets/patient_satisfaction.jpg"
-import treatment from "../assets/treatment.png.jpg"
-import profile from "../assets/apolohos.png"
+import diagnosis from "../../../assets/diagonosis.png.jpg"
+import doctor from "../../../assets/doctormanagement.png.jpg"
+import expenses from "../../../assets/expenses.png.jpg"
+import patient from "../../../assets/patienapointment.png.jpg"
+import satisfaction from "../../../assets/patient_satisfaction.jpg"
+import treatment from "../../../assets/treatment.png.jpg"
+import profile from "../../../assets/apolohos.png"
 
 const HigherManager = () => {
 
-  const[open, setopen] = useState("");
+const {role} = useParams();
+
+  const[open, setopen] = useState("StaffAttendence");
 
   const toggle = (name) => {
     if(open === name){
@@ -42,13 +46,17 @@ Staff Attendance
 
 <div className="flex gap-2 mt-2">
 
+<Link to={'/dashboard/${role}/staffattendence'}>
 <button className="bg-blue-300 px-3 py-1 rounded-full">
 Update
 </button>
+</Link>
 
+<Link to={'/dashboard/${role}/viewAttendence'}>
 <button className="bg-green-300 px-3 py-1 rounded-full">
 View
 </button>
+</Link>
 
 </div>
 
@@ -69,6 +77,7 @@ Bed Management
 {open === "BedManagement" && (
 
 <div className="flex gap-2 mt-2">
+
 
 <button className="bg-blue-300 px-3 py-1 rounded-full">
 Update
@@ -98,13 +107,16 @@ Staff Scheduling
 
 <div className="flex gap-2 mt-2">
 
+
 <button className="bg-blue-300 px-3 py-1 rounded-full">
 Update
 </button>
 
+
 <button className="bg-green-300 px-3 py-1 rounded-full">
 View
 </button>
+
 
 </div>
 
@@ -323,13 +335,17 @@ Patient Management
 
 <div className="flex justify-center gap-2 mt-2">
 
+<Link to={'/dashboard/${role}/addpatient'}>
 <button className="bg-blue-300 px-3 rounded-full">
 Update
 </button>
+</Link>
 
+<Link to={'/dashboard/${role}/viewpatient'}>
 <button className="bg-green-300 px-3 rounded-full">
 View
 </button>
+</Link>
 
 </div>
 

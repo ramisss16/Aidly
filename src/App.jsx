@@ -35,11 +35,13 @@
 // import ClinikDashboard from "./clinik/dashboard";
 import AmbulanceNav from "../component/AmbulanceNav";
 import { Outlet } from "react-router-dom";
+import LoginOptions from "./pages/LoginOption";
+import Navbar from "../component/navbar";
 
 function App(){
   return(
     <div>
-      <AmbulanceNav/>
+      <Navbar/>
       <Outlet/>
     </div>
   )
