@@ -126,6 +126,7 @@ import DashboardLayout from "./DashBoardLayout";
 import RoleDashboard from "./Role";
 import MyPatients from "./modules/clinik/doctor/Mypatient";
 import Myapointment from "./modules/clinik/doctor/Today'sapointment";
+import SignupHospital from "./pages/SignupHospital";
 
 
 const ErrorPage = () => <h1 className="text-center mt-20 text-3xl">Page Not Found</h1>;
@@ -147,6 +148,11 @@ const router = createBrowserRouter([
       {
         path: "/login/:role",
         element: <Login />
+      },
+
+      {
+        path: "/sign-up-hospital",
+        element: <SignupHospital />
       },
 
 
