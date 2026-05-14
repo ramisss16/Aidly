@@ -11,12 +11,14 @@ app.use(cors({
 }));
 
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT || 3000;
 
 // ROUTES
 const hospitalRoutes = require('./routes/HospitalRoutes');
-const ambulanceRoutes = require('./routes/AmbulanceRoutes');
+const hospitalAmbulanceRoutes = require("./routes/hospitalAmbulanceRoutes");
+const privateAmbulanceRoutes = require("./routes/privateAmbulanceRoutes");
 const patientRoutes = require('./routes/patientRoutes');
 const clinicRoutes = require("./routes/clinicRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
@@ -26,10 +28,10 @@ const onlineDoctorRoutes = require("./routes/onlineDoctorRoutes");
 const authRoutes = require("./routes/authRoutes");
 
 
-// ✅ CLEAN PREFIXES
 app.use("/api/hospital", hospitalRoutes);
 app.use("/api/patient", patientRoutes);
-app.use("/api/ambulance", ambulanceRoutes);
+app.use("/api/hospital-ambulance", hospitalAmbulanceRoutes);
+app.use("/api/private-ambulance", privateAmbulanceRoutes);
 
 app.use("/api/attendance", attendanceRoutes);
 
