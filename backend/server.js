@@ -26,7 +26,7 @@ const prescriptionRoutes = require("./routes/prescriptionRoutes");
 const attendanceRoutes = require("./routes/attendanceRoutes");
 const onlineDoctorRoutes = require("./routes/onlineDoctorRoutes");
 const authRoutes = require("./routes/authRoutes");
-
+const otpRoutes = require("./routes/otpRoutes");
 
 app.use("/api/hospital", hospitalRoutes);
 app.use("/api/patient", patientRoutes);
@@ -45,7 +45,7 @@ app.use("/api/prescriptions", prescriptionRoutes);
 app.use("/api/online-doctor", onlineDoctorRoutes);
 
 app.use("/api/auth", authRoutes);
-
+app.use("/api/otp", otpRoutes);
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
